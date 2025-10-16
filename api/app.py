@@ -11,7 +11,7 @@ app.layout = html.Div([
 	    dcc.Link(page['name'], href=page["relative_path"], className="btn btn-dark m-2 fs-5")\
 			  for page in dash.page_registry.values()]
 	),
-	dash.page_container
+	dash.page_containergit
 ], className="col-8 mx-auto")
 
 if __name__ == '__main__':
