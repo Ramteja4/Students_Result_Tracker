@@ -11,11 +11,11 @@ app.layout = html.Div([
 	    dcc.Link(page['name'], href=page["relative_path"], className="btn btn-dark m-2 fs-5")\
 			  for page in dash.page_registry.values()]
 	),
-	dash.page_containergit
+	dash.page_container
 ], className="col-8 mx-auto")
 
-# if __name__ == '__main__':
-# 	app.run(debug=True)
+if __name__ == '__main__':
+	app.run(debug=True)
 
-if __name__ == "__main__":
-    app.run_server(host="0.0.0.0", port=10000)
+# if __name__ == "__main__":
+#     app.run_server(host="0.0.0.0", port=10000)
