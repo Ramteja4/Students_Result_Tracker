@@ -1,12 +1,23 @@
+import os
 import pandas as pd
 import dash
 from dash import html
 import dash_bootstrap_components as dbc
 
-dash.register_page(__name__, path='/rank', name="𝑅𝒶𝓃𝓀 📈")
+# Register the page
+dash.register_page(__name__, path='/rank', name="𝑅� rank 📈")
 
-####################### DATASET #############################
-student_marks_df = pd.read_csv("student_marks.csv")
+####################### LOAD DATASET #############################
+# Compute absolute path to CSV (project root)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+csv_path = os.path.join(BASE_DIR, "student_marks.csv")
+
+# Load CSV safely
+try:
+    student_marks_df = pd.read_csv(csv_path)
+except FileNotFoundError:
+    raise Exception(f"The file 'student_marks.csv' was not found at {csv_path}. "
+                    f"Make sure it is included in your repository.")
 
 ####################### RANKING #############################
 student_marks_df['Rank'] = student_marks_df['Total'].rank(ascending=False, method='dense')
@@ -25,7 +36,7 @@ layout = dbc.Container([
                 dbc.ListGroupItem(
                     f"Rank {int(row['Rank'])} - Name: {row['Name']} - Rollno: {row['Rollno']}", 
                     className="d-flex justify-content-between align-items-center"
-                ) for index, row in ranked_df.iterrows()
+                ) for _, row in ranked_df.iterrows()
             ])
         ], width=6, className="mx-auto")
     ])
