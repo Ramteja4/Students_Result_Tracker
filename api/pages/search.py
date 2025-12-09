@@ -81,7 +81,7 @@ layout = html.Div(children=[
         type="number", 
         placeholder="Enter roll number", 
         className="form-control", 
-        min=1251, max=1272
+        min=1251, max=1350
     ),
     html.Br(),
     dcc.Graph(id="student_barplot")
